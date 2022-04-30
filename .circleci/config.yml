@@ -3,11 +3,10 @@ jobs:
   test:
       working_directory: /app
       docker:
-        - image: docker:20.10.14-git
+        - image: docker:17.05.0-ce-git
       steps:
         - run: |
-            echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
-            
+            echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password
 workflows:
   test-workflow:
     jobs:
