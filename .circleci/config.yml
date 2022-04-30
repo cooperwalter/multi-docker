@@ -24,7 +24,8 @@ jobs:
     docker:
       - image: docker:20.10.14-git
     steps:
-      - eb/deploy:
+      - checkout
+      - eb/jobs/deploy:
           context: aws-creds
           environment-name: Multidocker-env
           filters:
