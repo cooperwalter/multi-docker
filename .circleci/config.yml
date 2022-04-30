@@ -6,7 +6,7 @@ jobs:
         - image: docker:17.05.0-ce-git
       steps:
         - run: |
-            echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+            echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password
             
 workflows:
   test-workflow:
