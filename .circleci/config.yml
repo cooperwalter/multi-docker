@@ -1,0 +1,14 @@
+version: 2.1
+jobs:
+  test:
+      working_directory: /app
+      docker:
+        - image: docker:17.05.0-ce-git
+      steps:
+        - run: |
+            echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+            docker run -e CI=true cooperwalter/react-test npm test
+workflows:
+  test-workflow:
+    jobs:
+      - test
