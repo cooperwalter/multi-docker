@@ -7,6 +7,8 @@ jobs:
       steps:
         - run: |
             echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+        - run: |
+            docker run -e CI=true cooperwalter/react-test npm test
 workflows:
   test-workflow:
     jobs:
