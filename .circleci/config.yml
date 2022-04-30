@@ -9,7 +9,7 @@ jobs:
       - run: |
           echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
       - run: |
-          docker build -t cooperwalter/multi-client ./client
+          # docker build -t cooperwalter/multi-client ./client
           docker build -t cooperwalter/multi-nginx ./nginx
           docker build -t cooperwalter/multi-server ./server
           docker build -t cooperwalter/multi-worker ./worker
