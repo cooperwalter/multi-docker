@@ -5,6 +5,8 @@ jobs:
       docker:
         - image: docker:20.10.14-git
       steps:
+        - checkout
+        - setup_remote_docker
         - run: |
             echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
         - run: |
