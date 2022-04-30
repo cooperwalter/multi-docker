@@ -11,6 +11,25 @@ jobs:
             echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
         - run: |
             docker run -e CI=true cooperwalter/react-test npm test
+  build:
+    working_directory: /app
+    docker:
+      - image: docker:20.10.14-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: |
+          echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+      - run: |
+          docker build -t cooperwalter/multi-client ./client
+          docker build -t cooperwalter/multi-nginx ./nginx
+          docker build -t cooperwalter/multi-server ./server
+          docker build -t cooperwalter/multi-worker ./worker
+      - run: |
+          docker push cooperwalter/multi-client
+          docker push cooperwalter/multi-nginx
+          docker push cooperwalter/multi-server
+          docker push cooperwalter/multi-worker
 workflows:
   test-workflow:
     jobs:
